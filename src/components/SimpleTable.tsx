@@ -1,8 +1,8 @@
-import { Table } from "antd";
+import { Empty, Table } from "antd";
 import { isEmpty } from "lodash-es";
 
 const SimpleTable = ({ data }) => {
-  if (isEmpty(data)) return null;
+  if (isEmpty(data)) return <Empty />;
 
   // Generate columns from the keys of the first object in data
   const columns = Object.keys(data[0]).map((key) => ({
