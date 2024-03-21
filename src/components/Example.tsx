@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 
 function Example() {
   const [query, setQuery] = useState("select version()");
