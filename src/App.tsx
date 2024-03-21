@@ -2,9 +2,7 @@ import { ExperimentTwoTone } from "@ant-design/icons";
 import { Layout, Menu, MenuProps, theme } from "antd";
 import { useState } from "react";
 import Example from "./components/Example";
-import IndexedDBExample from "./components/IndexedDBExample";
 import Overview from "./components/Overview";
-import ZustandExample from "./components/ZustandExample";
 
 const { Header, Content, Footer } = Layout;
 
@@ -26,16 +24,6 @@ const items = [
   },
   {
     icon: <ExperimentTwoTone />,
-    key: "indexedDBExample",
-    label: "indexed db example",
-  },
-  {
-    icon: <ExperimentTwoTone />,
-    key: "zustandExample",
-    label: "zustand example",
-  },
-  {
-    icon: <ExperimentTwoTone />,
     key: "sqlExample",
     label: "sql example",
   },
@@ -45,8 +33,6 @@ const ComponsntMap = {
   overview: <Overview />,
   app: "App",
   setting: "Setting",
-  indexedDBExample: <IndexedDBExample />,
-  zustandExample: <ZustandExample />,
   sqlExample: <Example />,
 };
 

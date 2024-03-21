@@ -1,5 +1,5 @@
 import { Col, Divider, Row, Space } from "antd";
-import TextAreaBindIndexedDB from "./IndexedDBExample";
+import TextAreaBindIndexedDB from "./TextAreaBindIndexedDB";
 
 const items = [
   { label: "淨資產" },
