@@ -1,44 +1,24 @@
+import { Table } from "antd";
 import { isEmpty } from "lodash-es";
 
 const SimpleTable = ({ data }) => {
-  const columns = data.length > 0 ? Object.keys(data[0]) : [];
-
   if (isEmpty(data)) return null;
 
+  // Generate columns from the keys of the first object in data
+  const columns = Object.keys(data[0]).map((key) => ({
+    title: key,
+    dataIndex: key,
+  }));
+
+  // Add a unique key to each data object
+  const dataSource = data.map((item, index) => ({ key: index, ...item }));
+
   return (
-    <>
-      {data && data.length === 0 ? (
-        <div>暫無資料</div>
-      ) : (
-        <table
-          style={{
-            width: "100%",
-            border: "1px solid gray",
-          }}
-        >
-          <thead
-            style={{
-              backgroundColor: "darkgray",
-            }}
-          >
-            <tr>
-              {columns.map((column) => (
-                <th key={column}>{column}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item, idx) => (
-              <tr key={idx}>
-                {columns.map((column) => (
-                  <td key={column}>{item[column]}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </>
+    <Table
+      pagination={{ position: ["none", "none"] }}
+      dataSource={dataSource}
+      columns={columns}
+    />
   );
 };
 
