@@ -3,6 +3,7 @@ import { openDB } from "idb";
 import { debounce } from "lodash-es";
 import { useEffect, useRef, useState } from "react";
 import { sqlQuery } from "../service";
+import SimpleTable from "./SimpleTable";
 import TextAreaBindIndexedDB from "./TextAreaBindIndexedDB";
 
 const items = [
@@ -51,6 +52,7 @@ const span = 4;
 
 const Aaa = ({ id, item }) => {
   const [textAreaValue, setTextAreaValue] = useState("");
+  const [data, setData] = useState({});
 
   // 當 component 掛載時，從 IndexedDB 讀取值
   useEffect(() => {
@@ -65,12 +67,16 @@ const Aaa = ({ id, item }) => {
 
   const debouncedApiCall = useRef(
     debounce((value) => {
-      sqlQuery(value, "demo_db").catch((error) => {
-        console.log(error);
-        notification.error({
-          message: `${error}`,
+      sqlQuery(value, "demo_db")
+        .then((data) => {
+          setData(data);
+        })
+        .catch((error) => {
+          console.log(error);
+          notification.error({
+            message: `${error}`,
+          });
         });
-      });
     }, 500)
   ).current;
 
@@ -91,7 +97,7 @@ const Aaa = ({ id, item }) => {
           />
         </Col>
         <Col {...gutter} span={span}>
-          123
+          <SimpleTable data={data} />
         </Col>
       </Row>
     </>
