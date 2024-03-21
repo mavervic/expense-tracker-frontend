@@ -1,6 +1,8 @@
-import { Col, Divider, Row, Space } from "antd";
+import { Col, Divider, Row, Space, notification } from "antd";
 import { openDB } from "idb";
-import { useEffect, useState } from "react";
+import { debounce } from "lodash-es";
+import { useEffect, useRef, useState } from "react";
+import { sqlQuery } from "../service";
 import TextAreaBindIndexedDB from "./TextAreaBindIndexedDB";
 
 const items = [
@@ -60,6 +62,21 @@ const Aaa = ({ id, item }) => {
     save2IndexedDB(id, value);
     setTextAreaValue(value);
   };
+
+  const debouncedApiCall = useRef(
+    debounce((value) => {
+      sqlQuery(value, "demo_db").catch((error) => {
+        console.log(error);
+        notification.error({
+          message: `${error}`,
+        });
+      });
+    }, 500)
+  ).current;
+
+  useEffect(() => {
+    debouncedApiCall(textAreaValue);
+  }, [textAreaValue]);
 
   return (
     <>

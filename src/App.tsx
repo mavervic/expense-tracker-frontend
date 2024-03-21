@@ -3,6 +3,7 @@ import { Layout, Menu, MenuProps, theme } from "antd";
 import { useState } from "react";
 import Example from "./components/Example";
 import Overview from "./components/Overview";
+import { initNotificationConfig } from "./notification";
 
 const { Header, Content, Footer } = Layout;
 
@@ -35,6 +36,8 @@ const ComponsntMap = {
   setting: "Setting",
   sqlExample: <Example />,
 };
+
+initNotificationConfig();
 
 const App = () => {
   const {
