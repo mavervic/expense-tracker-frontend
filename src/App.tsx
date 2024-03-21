@@ -41,10 +41,14 @@ const App = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const [current, setCurrent] = useState("overview");
+  // get from location.hash
+  const [current, setCurrent] = useState(
+    window.location.hash.slice(1) || "overview"
+  );
 
-  const onClick: MenuProps["onClick"] = (e) => {
-    setCurrent(e.key);
+  const onClick: MenuProps["onClick"] = ({ key }) => {
+    setCurrent(key);
+    window.location.hash = `#${key}`; // store to location.hash
   };
 
   return (
