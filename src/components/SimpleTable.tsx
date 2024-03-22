@@ -18,6 +18,11 @@ const SimpleTable = ({ data }) => {
       pagination={{ position: ["none", "none"] }}
       dataSource={dataSource}
       columns={columns}
+      style={{
+        width: "100%",
+        maxHeight: "50vh", // '50vh' means '50% of the viewport height
+        overflowX: "auto",
+      }}
     />
   );
 };

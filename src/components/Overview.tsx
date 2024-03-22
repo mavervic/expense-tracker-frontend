@@ -86,7 +86,9 @@ const Aaa = ({ id, item }) => {
 
   return (
     <>
-      <Divider orientation="left">{item.label}</Divider>
+      <Divider orientation="left">
+        <strong>{item.label}</strong>
+      </Divider>
       <Row gutter={[16, 24]}>
         <Col {...gutter} span={span}>
           <TextAreaBindIndexedDB
