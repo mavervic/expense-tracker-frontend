@@ -106,7 +106,7 @@ const App = () => {
           textAlign: "center",
         }}
       >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        Expense Tracker ©{new Date().getFullYear()} Created by Vic Liu
       </Footer>
     </Layout>
   );
